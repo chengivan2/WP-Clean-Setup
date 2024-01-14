@@ -1,9 +1,7 @@
 <?php
 /*
 Plugin Name: WP Clean Setup
-Description: A WordPress plugin that deletes: Sample Page,
-                                            Hello World post, 
-                                            Hello Dolly and Akismeet Pluginson activation.
+Description: A WordPress plugin that deletes: Sample Page, Hello World post, Hello Dolly and Akismeet Pluginson activation.
 Version: 1.0
 Author: Ivan the Dev
 Author URI: https://ivanthedev.guru
@@ -28,9 +26,6 @@ function wpcs_delete_posts_and_plugins() {
     // Get the absolute path to the plugins directory
     $plugins_dir = WP_CONTENT_DIR . '/plugins';
 
-    // Get the plugin file name from the current file
-    $this_plugin = WP_PLUGIN_DIR ."/wpcleansetup/wpcleansetup.php" );
-
     // Check if hello dolly plugin exists in the plugins directory
     if ( file_exists( $plugins_dir . '/hello.php' ) ) {
 
@@ -45,6 +40,6 @@ function wpcs_delete_posts_and_plugins() {
         delete_plugins( array( 'hello-dolly/hello.php' ) );
     }
 
-    // Deactivate this plugin
-    deactivate_plugins( $this_plugin );
 }
+
+    
