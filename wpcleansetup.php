@@ -21,5 +21,5 @@ function wpcs_delete_posts_and_plugins() {
     wp_delete_post( 2, true );
 
     // Delete plugins akismet and hello dolly
-    delete_plugins( array( 'akismet/akismet.php', 'hello-dolly/hello.php' ) );
+    delete_plugins( array( 'akismet/akismet.php', '/hello.php' ) );
 }
