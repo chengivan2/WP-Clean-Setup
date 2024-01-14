@@ -23,7 +23,7 @@ function wpcs_delete_posts_and_plugins() {
     wp_delete_post( 2, true );
 
     // Delete plugins akismet anti-spam and hello dolly
-    delete_plugins( array( 'akismet-anti-spam/akismet.php' ) );
+    delete_plugins( array( 'akismet/akismet.php' ) );
 
     // Get the absolute path to the plugins directory
     $plugins_dir = WP_CONTENT_DIR . '/plugins';
