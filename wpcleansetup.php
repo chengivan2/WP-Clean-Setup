@@ -29,7 +29,7 @@ function wpcs_delete_posts_and_plugins() {
     $plugins_dir = WP_CONTENT_DIR . '/plugins';
 
     // Get the plugin file name from the current file
-    $this_plugin = plugin_basename( __FILE__ );
+    $this_plugin = WP_PLUGIN_DIR ."/wpcleansetup/wpcleansetup.php" );
 
     // Check if hello dolly plugin exists in the plugins directory
     if ( file_exists( $plugins_dir . '/hello.php' ) ) {
