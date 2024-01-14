@@ -1,7 +1,9 @@
 <?php
 /*
 Plugin Name: WP Clean Setup
-Description: A WordPress plugin that deletes posts and plugins on activation.
+Description: A WordPress plugin that deletes: Sample Page,
+                                            Hello World post, 
+                                            Hello Dolly and Akismeet Pluginson activation.
 Version: 1.0
 Author: Ivan the Dev
 Author URI: https://ivanthedev.guru
