@@ -1,45 +1,43 @@
 <?php
 /*
-Plugin Name: WP Clean Setup
-Description: A WordPress plugin that deletes: Sample Page, Hello World post, Hello Dolly and Akismeet Pluginson activation.
-Version: 1.0
-Author: Ivan the Dev
-Author URI: https://ivanthedev.guru
-License: GPL2
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
-
+Plugin Name: WP Clean Setup Plugin
+Description: Performs cleanup actions on activation.
+Version: 2.0
+Author: Your Name
 */
 
-// Register activation hook
-register_activation_hook( __FILE__, 'wpcs_delete_posts_and_plugins' );
 
-// Define function to delete posts and plugins
-function wpcs_delete_posts_and_plugins() {
+    // Actions to perform on activation
+    register_activation_hook(__FILE__, 'cleanup_plugin_activation');
 
-    // Delete posts with post id 1 and 2
-    wp_delete_post( 1, true );
-    wp_delete_post( 2, true );
+    function cleanup_plugin_activation() {
+        // Delete page with ID 2
+        wp_delete_post(2, true);
 
-    // Delete plugins akismet anti-spam and hello dolly
-    delete_plugins( array( 'akismet/akismet.php' ) );
+        // Delete post with ID 1
+        wp_delete_post(1, true);
 
-    // Get the absolute path to the plugins directory
-    $plugins_dir = WP_CONTENT_DIR . '/plugins';
+        // Delete Hello Dolly plugin
+        $hello_dolly_path_1 = WP_PLUGIN_DIR . '/hello-dolly/hello.php';
+        $hello_dolly_path_2 = WP_PLUGIN_DIR . '/hello.php';
 
-    // Check if hello dolly plugin exists in the plugins directory
-    if ( file_exists( $plugins_dir . '/hello.php' ) ) {
+        if (file_exists($hello_dolly_path_1)) {
+            delete_plugins( array( 'hello-dolly/hello.php' ));
+        } elseif (file_exists($hello_dolly_path_2)) {
+            delete_plugins( array( 'hello.php' ));
+        }
 
-        // Delete hello dolly plugin from the plugins directory
-        delete_plugins( array( 'hello.php' ) );
+        // Delete Akismet plugin
+        delete_plugins( array( 'akismet/akismet.php' ) )
+
+
+        // Display success message
+        echo 'Clean Up complete!';
     }
-
-    // Check if hello dolly plugin exists in the hello-dolly subdirectory
-    if ( file_exists( $plugins_dir . '/hello-dolly/hello.php' ) ) {
-
-        // Delete hello dolly plugin from the hello-dolly subdirectory
-        delete_plugins( array( 'hello-dolly/hello.php' ) );
+    if (isset($_GET['activated']) && is_admin()) {
+        global $wp_rewrite;
+        $wp_rewrite->set_permalink_structure('/%postname%/');
+        $wp_rewrite->flush_rules();
     }
-
-}
-
-    
+    //removed permalink redirect
+?>
